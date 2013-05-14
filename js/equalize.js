@@ -53,7 +53,7 @@
       var $container = $(this);
 
       if ($container.is(':hidden')) {
-        $container.css({ 'position':'absolute', 'left': '-999em', 'visibility': 'hidden', 'display': 'block' });
+        $container.css({ 'position':'absolute', 'visibility': 'hidden', 'display': 'block' });
       }
 
       // when children exist, equalize the passed in child elements, otherwise equalize the children
@@ -63,8 +63,10 @@
       $children.each(function() {
         var $element = $(this),
             value;
+
         if (reset) { $element.css(type, ''); } // remove existing height/width dimension
         value = $element[equalize]();          // call height(), outerHeight(), etc.
+        console.log($element, value, $element.outerHeight());
         if (value > max) { max = value; }      // update max
       });
 
