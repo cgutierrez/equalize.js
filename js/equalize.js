@@ -49,8 +49,15 @@
     type = (equalize.indexOf('eight') > 0) ? 'height' : 'width';
 
     return $containers.each(function() {
-          // when children exist, equalize the passed in child elements, otherwise equalize the children
-      var $children = (children) ? $(this).find(children) : $(this).children(),
+
+      var $container = $(this);
+
+      if ($container.is(':hidden')) {
+        $container.css({ 'position':'absolute', 'left': '-999em', 'visibility': 'hidden', 'display': 'block' });
+      }
+
+      // when children exist, equalize the passed in child elements, otherwise equalize the children
+      var $children = (children) ? $container.find(children) : $container.children(),
           max = 0; // reset for each container
 
       $children.each(function() {
@@ -61,6 +68,7 @@
         if (value > max) { max = value; }      // update max
       });
 
+      $container.removeAttr('style');
       $children.css(type, max +'px'); // add CSS to children
     });
   };
