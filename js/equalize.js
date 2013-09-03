@@ -66,7 +66,6 @@
 
         if (reset) { $element.css(type, ''); } // remove existing height/width dimension
         value = $element[equalize]();          // call height(), outerHeight(), etc.
-        console.log($element, value, $element.outerHeight());
         if (value > max) { max = value; }      // update max
       });
 
